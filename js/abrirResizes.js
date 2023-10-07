@@ -7,7 +7,7 @@ const abrirResizes = (event) => {
     elementoClicado.addEventListener('mousedown', ()=>{
       elementoClicado.setAttribute('is-dragging', 'true')
 
-      elementoClicado.addEventListener('mousemove', ()=>{movendoElemento(elementoClicado)})
+      document.addEventListener('mousemove', ()=>{movendoElemento(elementoClicado)})
       elementoClicado.addEventListener('mouseup', ()=>{elementoClicado.setAttribute('is-dragging', 'false')})
     })
   
