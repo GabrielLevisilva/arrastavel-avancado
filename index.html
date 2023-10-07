@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+
+    <script defer src="js/movendo.js"></script>
+    <script defer src="js/eventosResizers.js"></script>
+    <script defer src="js/abrirResizes.js"></script>
+    <script defer src="js/script.js"></script>
+
+    <section id="local-quadros">
+        <div class="quadro" id="quadro1">
+            <div class="elemento" id="temporario">
+                <!-- <div class="redimensionador-x"></div>
+                <div class="redimensionador-y"></div> -->
+            </div>
+            <div class="elemento"></div>
+        </div>
+    </section>
+
+    <script>
+        document.querySelector('.elemento').addEventListener('click', ()=>{
+            console.log(event.target.getBoundingClientRect())
+        })
+    </script>
+    
+</body>
+</html>

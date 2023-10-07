@@ -1,0 +1,56 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+#local-quadros{
+    background-color: rgb(133, 133, 133);
+    padding: 20px;
+}
+.quadro{
+    border: 1px solid black;
+    min-width: 100px;
+    min-height: 100px;
+    height: 300px;
+    background-color: white;
+    
+}
+.elemento{
+    width: 60px;
+    height: 60px;
+    background-color: bisque;
+    border: solid 2px rgba(0, 0, 0, 0);
+    /* position: relative; */
+    /* min-width: 10px;
+    min-height: 10px; */
+    
+}
+
+/* #temporario{
+    margin: 100px;
+} */
+
+.redimensionador-x{
+    background-color: blue;
+    width: 10px;
+    /* OBS: no js o height tem que ser 70% do height da div */
+    height: 70%; 
+    position: relative;
+    /* left tem que ser igual ao width da div mais 10px */
+    left: 100%;
+    top: 15%;
+    cursor: grab;
+    /* border-radius: 50%; */
+}
+.redimensionador-y{
+    position: relative;
+    background-color: rgb(255, 60, 0);
+    width: 70%;
+    height: 10px;
+    top: 30%;
+    left: 15%;
+    cursor: grab;
+    
+}
+.redimensionador-x:active, .redimensionador-y:active{
+    cursor: grabbing;
+}
