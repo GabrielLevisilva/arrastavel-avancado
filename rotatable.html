@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Div Rotacionável</title>
+    <style>
+        .rotatable {
+            position: relative;
+            width: 200px;
+            height: 200px;
+            border: 2px solid #000;
+        }
+
+        .handle {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: #007bff;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="rotatable" id="rotatableDiv">
+        <div class="handle" id="rotateHandle"></div>
+    </div>
+
+    <script>
+        // Referência para a div rotacionável e a alça de rotação
+        const rotatableDiv = document.getElementById('rotatableDiv'); //elementoClicao
+        const rotateHandle = document.getElementById('rotateHandle'); //rotacionador
+
+        // Variáveis para rastrear o estado de rotação
+        let isRotating = false;
+        let initialAngle = 0;
+        let currentAngle = 0;
+
+        // Função para calcular o ângulo entre dois pontos
+        function calculateAngle(centerX, centerY, x, y) {
+            const radians = Math.atan2(y - centerY, x - centerX);
+            return radians * (180 / Math.PI);
+        }
+
+        // Evento de mouse down na alça de rotação
+        rotateHandle.addEventListener('mousedown', (e) => {
+            isRotating = true;
+            const centerX = rotatableDiv.offsetWidth / 2;
+            const centerY = rotatableDiv.offsetHeight / 2;
+            const startX = e.clientX;
+            const startY = e.clientY;
+            const initialDivAngle = currentAngle;
+
+            document.addEventListener('mousemove', (e) => {
+                if (isRotating) {
+                    const mouseX = e.clientX;
+                    const mouseY = e.clientY;
+                    const newAngle = initialDivAngle + calculateAngle(centerX, centerY, mouseX, mouseY) - calculateAngle(centerX, centerY, startX, startY);
+                    currentAngle = newAngle;
+                    rotatableDiv.style.transform = `rotate(${newAngle}deg)`;
+                }
+            });
+
+            document.addEventListener('mouseup', () => {
+                isRotating = false;
+            });
+        });
+    </script>
+</body>
+</html>

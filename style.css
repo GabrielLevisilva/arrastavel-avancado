@@ -20,14 +20,15 @@
     background-color: bisque;
     border: solid 2px rgba(0, 0, 0, 0);
     /* position: relative; */
-    /* min-width: 10px;
-    min-height: 10px; */
+    min-width: 35px;
+    min-height: 35px;
+    position: absolute;
     
 }
 
-/* #temporario{
-    margin: 100px;
-} */
+#temporario{
+    background-color: cadetblue;
+}
 
 .redimensionador-x{
     background-color: blue;
@@ -40,8 +41,16 @@
     top: 15%;
     cursor: grab;
     /* border-radius: 50%; */
+    
 }
-.redimensionador-y{
+.rotacionador{
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    background-color: blueviolet;
+    top: 0%;
+}
+/* .redimensionador-y{
     position: relative;
     background-color: rgb(255, 60, 0);
     width: 70%;
@@ -50,7 +59,7 @@
     left: 15%;
     cursor: grab;
     
-}
-.redimensionador-x:active, .redimensionador-y:active{
+} */
+.redimensionador-x:active{
     cursor: grabbing;
 }
