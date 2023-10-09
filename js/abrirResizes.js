@@ -54,7 +54,7 @@ const abrirResizes = (event) => {
     
 
     addEventosResizers(elementoClicado) //adiciona eventos aos resizers criados
-    addEventosRotacionador(elementoClicado)
+    // addEventosRotacionador(elementoClicado)
   }
 
 //   TO DO: ao clicar no quadroAtual (não clicando nos filhos) ele remove todos os resizers e todas as bordas e desabilita todos. Ou pode ter um botão no menu que faz isso, mais fácil
