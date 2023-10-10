@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .quadro {
+            width: 500px; /* Largura do quadro */
+            height: 500px; /* Altura do quadro */
+            border: solid 1px black;
+            overflow: hidden; /* Esconde o conteúdo que ultrapassar o quadro */
+            position: relative; /* Para que o elemento possa ser posicionado dentro do quadro */
+        }
+        .tela {
+            width: 100%; /* Largura da tela */
+            height: 100%; /* Altura da tela */
+            background-color: white; /* Cor de fundo da tela */
+            position: absolute; /* Permite que a tela seja posicionada dentro do quadro */
+        }
+        .elemento {
+            width: 65px;
+            height: 65px;
+            background-color: blueviolet;
+            position: absolute; /* Permite que o elemento seja posicionado dentro do quadro */
+            transform: translate(0, 0); /* Inicialmente, o elemento está na posição (0, 0) */
+        }
+    </style>
+</head>
+<body>
+    <div class="quadro">
+        <div class="tela">
+            <div class="elemento" draggable="true"></div>
+        </div>
+    </div>
+    <script>
+        const quadro = document.querySelector('.quadro');
+        const elemento = document.querySelector('.elemento');
+
+        let isDragging = false;
+        let offsetX, offsetY;
+
+        elemento.addEventListener('mousedown', (e) => {
+            isDragging = true;
+            offsetX = e.clientX - elemento.getBoundingClientRect().left;
+            offsetY = e.clientY - elemento.getBoundingClientRect().top;
+        });
+
+        document.addEventListener('mousemove', (e) => {
+            if (!isDragging) return;
+
+            const quadroRect = quadro.getBoundingClientRect();
+            const maxX = quadroRect.width - elemento.offsetWidth;
+            const maxY = quadroRect.height - elemento.offsetHeight;
+
+            let newX = e.clientX - offsetX - quadroRect.left;
+            let newY = e.clientY - offsetY - quadroRect.top;
+
+            newX = Math.min(Math.max(0, newX), maxX);
+            newY = Math.min(Math.max(0, newY), maxY);
+
+            elemento.style.transform = `translate(${newX}px, ${newY}px)`;
+        });
+
+        document.addEventListener('mouseup', () => {
+            isDragging = false;
+        });
+
+        elemento.addEventListener('dragstart', (e) => {
+            e.preventDefault();
+        });
+    </script>
+</body>
+</html>

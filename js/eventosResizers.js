@@ -19,16 +19,6 @@ const aumentarX = (elementoResizerX, elementoClicado) => {
         initialX = currentX;
         initialY = currentY;
 
-
-        // elementoResizerX.style.backgroundColor = 'pink';
-        // let cursorX = event.pageX;
-        // elementoResizerX.style.left = cursorX - 25 + 'px';
-        // let elementoWidth = elementoClicado.getBoundingClientRect().width;
-        // let espacoEntre = cursorX - elementoWidth;
-        // let elementoLeft = elementoClicado.getBoundingClientRect().left;
-        // console.log('ele está à ' + elementoLeft + 'px de distancia da Esquerda')
-        // elementoClicado.style.width = (elementoWidth + espacoEntre ) - 25 + 'px';
-        // elementoClicado.style.height = (elementoWidth + espacoEntre ) - 25 + 'px';
     }
 };
 
@@ -41,7 +31,8 @@ const addEventosResizers = (elementoClicado) => {
 
         initialX = event.clientX;
         initialY = event.clientY;
-        
+            
+
         elementoClicado.setAttribute('data-redimensionando', 'true');
         
         document.addEventListener('mousemove', () => {
