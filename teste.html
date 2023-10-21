@@ -6,17 +6,15 @@
     <title>Document</title>
     <style>
         .quadro {
-            width: 500px; /* Largura do quadro */
+            min-width: 500px; /* Largura do quadro */
             height: 500px; /* Altura do quadro */
             border: solid 1px black;
-            overflow: hidden; /* Esconde o conteúdo que ultrapassar o quadro */
+            /* overflow: hidden; Esconde o conteúdo que ultrapassar o quadro */
+            
             position: relative; /* Para que o elemento possa ser posicionado dentro do quadro */
-        }
-        .tela {
-            width: 100%; /* Largura da tela */
-            height: 100%; /* Altura da tela */
-            background-color: white; /* Cor de fundo da tela */
-            position: absolute; /* Permite que a tela seja posicionada dentro do quadro */
+            
+        overflow: scroll;
+            
         }
         .elemento {
             width: 65px;
@@ -25,50 +23,63 @@
             position: absolute; /* Permite que o elemento seja posicionado dentro do quadro */
             transform: translate(0, 0); /* Inicialmente, o elemento está na posição (0, 0) */
         }
+        #especifico{
+            background-color: red;
+        }
+        #longe{
+            left: 150%;
+        }
     </style>
 </head>
 <body>
     <div class="quadro">
-        <div class="tela">
-            <div class="elemento" draggable="true"></div>
-        </div>
+        
+            <div class="elemento" draggable="true" id="longe"></div>
+            <div class="elemento" draggable="true" id="especifico"></div>
+        
     </div>
     <script>
         const quadro = document.querySelector('.quadro');
-        const elemento = document.querySelector('.elemento');
-
+        const elementoEspecifico = document.querySelector('#especifico');
+    
         let isDragging = false;
-        let offsetX, offsetY;
-
-        elemento.addEventListener('mousedown', (e) => {
+        let startX, startY, elementX, elementY;
+    
+        elementoEspecifico.addEventListener('mousedown', (e) => {
             isDragging = true;
-            offsetX = e.clientX - elemento.getBoundingClientRect().left;
-            offsetY = e.clientY - elemento.getBoundingClientRect().top;
+            const elementoRect = elementoEspecifico.getBoundingClientRect();
+            startX = e.clientX - elementoRect.left;
+            startY = e.clientY - elementoRect.top;
+            elementX = elementoEspecifico.getBoundingClientRect().left - quadro.getBoundingClientRect().left;
+            elementY = elementoEspecifico.getBoundingClientRect().top - quadro.getBoundingClientRect().top;
         });
-
+    
         document.addEventListener('mousemove', (e) => {
             if (!isDragging) return;
-
+    
             const quadroRect = quadro.getBoundingClientRect();
-            const maxX = quadroRect.width - elemento.offsetWidth;
-            const maxY = quadroRect.height - elemento.offsetHeight;
-
-            let newX = e.clientX - offsetX - quadroRect.left;
-            let newY = e.clientY - offsetY - quadroRect.top;
-
+            const maxX = quadroRect.width - elementoEspecifico.offsetWidth;
+            const maxY = quadroRect.height - elementoEspecifico.offsetHeight;
+    
+            let newX = e.clientX - startX - quadroRect.left;
+            let newY = e.clientY - startY - quadroRect.top;
+    
             newX = Math.min(Math.max(0, newX), maxX);
             newY = Math.min(Math.max(0, newY), maxY);
-
-            elemento.style.transform = `translate(${newX}px, ${newY}px)`;
+    
+            elementoEspecifico.style.transform = `translate(${newX}px, ${newY}px)`;
         });
-
+    
         document.addEventListener('mouseup', () => {
             isDragging = false;
         });
-
-        elemento.addEventListener('dragstart', (e) => {
+    
+        elementoEspecifico.addEventListener('dragstart', (e) => {
             e.preventDefault();
         });
     </script>
+    
+    
+    
 </body>
 </html>

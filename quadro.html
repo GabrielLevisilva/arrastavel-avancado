@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        #local-quadros{
+            background-color: rgb(133, 133, 133);
+            padding: 20px;
+        }
+        .quadro{
+            border: 1px solid black;
+            min-width: 100px;
+            min-height: 100px;
+            height: 300px;
+            background-color: white;
+            
+            
+        }
+        .elemento{
+            width: 60px;
+            height: 60px;
+            background-color: bisque;
+            border: solid 2px rgba(0, 0, 0, 0);
+            /* position: relative; */
+            min-width: 35px;
+            min-height: 35px;
+            position: absolute;
+            
+        }
+        .tela{
+            background-color:aquamarine;
+            width: 50%;
+            height: 100%;
+            overflow: scroll;
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- <script defer src="js/eventosRotacionador.js"></script> -->
+    <!-- <script defer src="js/rotatable.js"></script> -->
+    <script defer src="js/quadrosLimites.js"></script>
+    <script defer src="js/clicarNaTela.js"></script>
+    <script defer src="js/movendo.js"></script>
+    <script defer src="js/eventosResizers.js"></script>
+    <script defer src="js/abrirResizes.js"></script>
+    <script defer src="js/script.js"></script>
+
+    <section id="local-quadros">
+        <div class="quadro">
+            <div class="tela">
+                <div class="elemento"></div>
+            </div>
+        </div>
+
+            
+            
+            
+        
+    </section>
+
+    <script>
+        document.querySelector('.elemento').addEventListener('click', ()=>{
+            console.log(event.target.getBoundingClientRect())
+        })
+    </script>
+    
+</body>
+</html>
